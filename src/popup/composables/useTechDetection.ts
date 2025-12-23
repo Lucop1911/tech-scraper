@@ -21,6 +21,10 @@ export const useTechDetection = () => {
         throw new Error('No active tab found');
       }
 
+      if (!tab.url || !tab.url.startsWith('https://')) {
+        throw new Error('Technology detection only works on HTTPS websites');
+      }
+
       const response: TechDetectionResponse = await chrome.tabs.sendMessage(
         tab.id,
         { action: MESSAGE_ACTIONS.DETECT_TECH }
@@ -42,7 +46,15 @@ export const useTechDetection = () => {
         throw new Error(response.error || 'Unknown error');
       }
     } catch (err) {
-      error.value = err instanceof Error ? err.message : 'Error detecting technologies';
+      let errorMessage = 'Error detecting technologies';
+      if (err instanceof Error) {
+        if (err.message.includes('Receiving end does not exist')) {
+          errorMessage = 'Please reload the page and try again';
+        } else {
+          errorMessage = err.message;
+        }
+      }
+      error.value = errorMessage;
       console.error('Detection error:', err);
     } finally {
       loading.value = false;

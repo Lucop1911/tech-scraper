@@ -1,44 +1,93 @@
 .popup-container {
-  width: 350px;
-  min-height: 400px;
-  max-height: 600px;
-  overflow-y: auto;
+  width: 380px;
+  min-height: 500px;
+  max-height: 700px;
+  background: var(--bg-primary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
 }
 
 .popup-header {
-  background: var(--primary-color);
-  color: white;
-  padding: var(--spacing-md);
+  background: var(--gradient-primary);
+  color: var(--text-inverse);
+  padding: var(--spacing-lg) var(--spacing-xl);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.popup-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
 }
 
 .popup-header h1 {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  letter-spacing: -0.025em;
 }
 
 .popup-main {
-  padding: var(--spacing-md);
+  padding: var(--spacing-xl);
+  background: var(--bg-secondary);
 }
 
 .button-primary {
   width: 100%;
-  padding: 12px;
-  background: var(--primary-color);
-  color: white;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--gradient-primary);
+  color: var(--text-inverse);
   border: none;
   border-radius: var(--border-radius);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--font-size-base);
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.button-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left var(--transition-slow);
 }
 
 .button-primary:hover:not(:disabled) {
-  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.button-primary:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.button-primary:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-md);
 }
 
 .button-primary:disabled {
-  background: #ccc;
+  background: var(--text-muted);
   cursor: not-allowed;
+  transform: none;
+  box-shadow: var(--shadow-sm);
 }
