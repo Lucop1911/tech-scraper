@@ -119,7 +119,6 @@ defineEmits<{
   }
 }
 
-/* Pulse animation for loading state */
 .scan-button.loading {
   animation: pulse 2s infinite;
 }

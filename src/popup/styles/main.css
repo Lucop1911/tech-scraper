@@ -27,7 +27,6 @@ body {
   background: transparent;
 }
 
-/* Modern scrollbar styling for dark theme */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -48,13 +47,11 @@ body {
   background: var(--text-muted);
 }
 
-/* Selection styling for dark theme */
 ::selection {
   background: rgba(59, 130, 246, 0.3);
   color: var(--text-primary);
 }
 
-/* Focus styles */
 *:focus {
   outline: 2px solid var(--primary-color);
   outline-offset: 2px;
@@ -67,7 +64,6 @@ textarea:focus {
   outline-offset: 2px;
 }
 
-/* Smooth transitions for all interactive elements */
 button,
 input,
 textarea,
@@ -75,7 +71,6 @@ select {
   transition: all var(--transition-fast);
 }
 
-/* Loading animation utility */
 @keyframes shimmer {
   0% {
     background-position: -200px 0;
