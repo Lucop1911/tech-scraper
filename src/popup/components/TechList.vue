@@ -22,7 +22,7 @@
 
           <div class="tech-info">
             <div class="tech-name">{{ tech.name }}</div>
-            <div class="tech-category">{{ tech.category }}</div>
+            <div class="tech-category">{{ formatCategory(tech.category) }}</div>
             <div v-if="tech.version" class="tech-version">
               <span class="version-badge">v{{ tech.version }}</span>
             </div>
@@ -41,6 +41,13 @@
 
 <script setup lang="ts">
 import type { Technology } from '../../shared/types';
+import FrameworkIcon from '../../shared/icons/FrameworkIcon.vue';
+import LibraryIcon from '../../shared/icons/LibraryIcon.vue';
+import CmsIcon from '../../shared/icons/CmsIcon.vue';
+import AnalyticsIcon from '../../shared/icons/AnalyticsIcon.vue';
+import OtherIcon from '../../shared/icons/OtherIcon.vue';
+import BuiltToolsIcon from '../../shared/icons/BuiltToolsIcon.vue';
+import StateManagementIcon from '../../shared/icons/StateManagementIcon.vue';
 
 defineProps<{
   technologies: Technology[];
@@ -48,13 +55,19 @@ defineProps<{
 
 const getTechIcon = (category: string) => {
   const icons = {
-    framework: 'FrameworkIcon',
-    library: 'LibraryIcon',
-    cms: 'CmsIcon',
-    analytics: 'AnalyticsIcon',
-    other: 'OtherIcon'
+    framework: FrameworkIcon,
+    library: LibraryIcon,
+    cms: CmsIcon,
+    analytics: AnalyticsIcon,
+    'build-tool': BuiltToolsIcon,
+    'state-management': StateManagementIcon,
+    other: OtherIcon
   };
-  return icons[category as keyof typeof icons] || 'OtherIcon';
+  return icons[category as keyof typeof icons] || OtherIcon;
+};
+
+const formatCategory = (category: string) => {
+  return category.replace(/-/g, ' ');
 };
 </script>
 
@@ -236,38 +249,5 @@ const getTechIcon = (category: string) => {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-/* Icon Components */
-.framework-icon,
-.library-icon,
-.cms-icon,
-.analytics-icon,
-.other-icon {
-  width: 20px;
-  height: 20px;
-  stroke: currentColor;
-  stroke-width: 2;
-  fill: none;
-}
-
-.framework-icon {
-  /* Code brackets icon */
-}
-
-.library-icon {
-  /* Book icon */
-}
-
-.cms-icon {
-  /* Settings icon */
-}
-
-.analytics-icon {
-  /* Bar chart icon */
-}
-
-.other-icon {
-  /* Generic circle icon */
 }
 </style>

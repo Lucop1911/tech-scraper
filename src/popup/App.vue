@@ -71,7 +71,6 @@ const {
   min-height: 550px;
   max-height: 750px;
   background: var(--bg-primary);
-  border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-xl);
   overflow: hidden;
   backdrop-filter: blur(20px);

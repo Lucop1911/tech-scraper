@@ -4,7 +4,6 @@ chrome.runtime.onInstalled.addListener(() => {
   console.log('Tech-Scraper extension installed');
 });
 
-// Store detection results
 const detectionCache = new Map<string, DetectionResult>();
 
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
